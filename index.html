@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Albion Online loot log viewer and player loot statistics.">
+  <meta name="theme-color" content="#101216">
+  <title>Albion Online — Loot Logger</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="crest" aria-hidden="true">⚔</div>
+      <div><h1>Albion Online · Loot Logger</h1><p>Upload your own CSV · Your loot data stays in your browser</p></div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="stats-grid" aria-label="Loot summary">
+      <article class="stat"><span class="stat-label">Estimated loot value</span><strong id="totalValue">—</strong><small>Quantity × estimated market value</small></article>
+      <article class="stat"><span class="stat-label">Loot records</span><strong id="recordCount">—</strong><small>Rows in the imported report</small></article>
+      <article class="stat"><span class="stat-label">Items looted</span><strong id="itemCount">—</strong><small>Total quantity</small></article>
+      <article class="stat"><span class="stat-label">Looters</span><strong id="playerCount">—</strong><small>Unique player names</small></article>
+    </section>
+
+    <section class="toolbar" aria-label="Search and filters">
+      <input id="search" type="search" placeholder="Search item, player, guild, cluster…" aria-label="Search loot">
+      <select id="playerFilter" aria-label="Filter by looter"><option value="">All looters</option></select>
+      <select id="guildFilter" aria-label="Filter by guild"><option value="">Guild</option></select>
+      <select id="clusterFilter" aria-label="Filter by cluster"><option value="">All clusters</option></select>
+      <select id="sort" aria-label="Sort records">
+        <option value="newest">Newest first</option><option value="value">Highest value</option>
+        <option value="quantity">Largest quantity</option><option value="item">Item name A–Z</option>
+      </select>
+      <label class="file-button">Import CSV<input id="fileInput" type="file" accept=".csv,text/csv"></label>
+      <button id="exportButton" type="button">Export filtered CSV</button>
+    </section>
+
+    <nav class="tabs" aria-label="Views">
+      <button class="tab active" data-tab="loot" type="button">Loot log</button>
+      <button class="tab" data-tab="items" type="button">Top items</button>
+      <button class="tab" data-tab="players" type="button">Player stats</button>
+      <button class="tab" data-tab="playerLoot" type="button">Player loot</button>
+    </nav>
+
+    <section id="loot" class="panel">
+      <div class="panel-heading"><h2>Loot records</h2><span id="resultCount" class="muted"></span></div>
+      <div class="table-scroll"><table>
+        <thead><tr><th>Item</th><th>Looted by</th><th>Looted from</th><th>Location</th><th>Qty</th><th>Est. value</th><th>Time (UTC)</th></tr></thead>
+        <tbody id="lootBody"></tbody>
+      </table></div>
+      <div class="pagination"><span id="pageInfo" class="muted"></span><div><button id="prevButton" type="button">Previous</button> <button id="nextButton" type="button">Next</button></div></div>
+    </section>
+    <section id="items" class="panel hidden">
+      <div class="panel-heading"><h2>Most valuable items</h2><span class="muted">Grouped by item</span></div>
+      <div id="itemCards" class="item-cards"></div>
+    </section>
+    <section id="players" class="panel hidden">
+      <div class="panel-heading"><h2>Loot value by player</h2><span class="muted">Estimated item value</span></div>
+      <div id="playerStats"></div>
+    </section>
+    <section id="playerLoot" class="panel hidden">
+      <div class="panel-heading"><h2>Loot grouped by player</h2><span id="playerLootCount" class="muted">Item icons · quantities · estimated values</span></div>
+      <div id="playerLootGroups" class="player-loot-groups"></div>
+    </section>
+    <p class="site-note">Market values are estimates from your uploaded CSV, not live market prices. Import a CSV to populate the dashboard. Your uploaded data is processed in your browser and is not sent to a server.</p>
+  </main>
+</body>
+</html>
