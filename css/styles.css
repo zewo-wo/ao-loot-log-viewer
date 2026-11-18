@@ -34,6 +34,16 @@ td{padding:10px 9px;border-bottom:1px solid #292f38;vertical-align:middle}tbody 
 .site-note{font-size:11px;color:var(--muted);margin:18px 2px}.hidden{display:none!important}
 @media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stat strong{font-size:19px}.toolbar>*{flex:1}.player-row{grid-template-columns:105px 1fr 95px;gap:8px}.tabs{overflow:auto}.tab{white-space:nowrap}}
 @media(max-width:390px){.stat{padding:12px}.stat strong{font-size:17px}}
+.crest {
+  display: block;
+  width: 165px;
+  height: auto;
+  object-fit: contain;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
 
 .empty-state{text-align:center;padding:44px 18px!important;color:var(--muted);line-height:1.8}.empty-state strong{color:var(--text);font-size:15px}
 button:disabled{opacity:.4;cursor:not-allowed}
